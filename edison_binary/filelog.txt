@@ -1,0 +1,11 @@
+Image C:\MyWork\research_C_Direc\Line Matching\Wide_Baseline Stereo Matching with Line Segments\images\Line_signature_paper_dataset\view.j.jpg loaded
+Creating angle lookup table
+Start edge detection...
+...smooth-differentiation filtering
+...subspace estimate
+...edge strengths
+...computing ranks
+...nonmaxima supression: arc
+...hysteresis thresholding, high: box  low: arc
+Done edge detection.
+Edge map saved in: C:\MyWork\research_C_Direc\Line Matching\Wide_Baseline Stereo Matching with Line Segments\images\Line_signature_paper_dataset\edge_view_j.pgm

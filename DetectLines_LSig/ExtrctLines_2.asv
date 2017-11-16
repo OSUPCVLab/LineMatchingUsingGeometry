@@ -1,0 +1,46 @@
+function [data] = ExtrctLines_2(inname,outname,minLength)
+
+
+% %% Example of input:
+% % 
+% base_dir = './data/Test1';      % if images in same folder of code >>>>> base_dir='';
+% ext = 'jpg';
+% minLength=100;
+% %% load data
+% 
+% name = dir([base_dir '/*.' ext]);
+% name = sort({name.name});
+
+% for i = 1:length(name)
+%     inname  = 'vgg_xcv_in.png';
+
+%     I{i}=imread(name{i});
+%     outname = ['lines',num2str(i),'.txt'];
+    fpath = fileparts(which(mfilename))
+    exec_str = ['"' fpath '\LineDetect.exe"']
+%     exec_str = ['"'  'LineDetect.exe"'];
+    system([exec_str  '  ' inname '  ' outname ])
+    
+    fid = fopen(outname);
+    if fid==-1
+    error('Cannot load results from binary executable');
+    end
+    file_header = textscan(fid, '%s', 1, 'delimiter', '|');
+
+    % read numeric data
+    data = textscan(fid, '%f %f %f %f');
+    data=([data{[1:length(data)]}])'; 
+    ind=find((sqrt(sum((data(1:2,:)-data(3:4,:)).^2,1)))>=minLength);
+    data=data(:,ind);
+    fclose(fid);
+   
+    
+%     clear data;
+end
+
+
+
+% end
+
+    
+    
