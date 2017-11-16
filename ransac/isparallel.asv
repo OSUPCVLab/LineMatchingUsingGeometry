@@ -1,0 +1,41 @@
+% ISPARALLEL - are 3 lines parellel
+
+
+
+function r = isparallel(l1, l2, l3)
+
+
+if size(l1,1)==4
+    l1=[l1(1:2,:);1;l1(3:4,:);1];
+    l2=cross(l2(1:3,:),l2(4:6,:));
+    l3=cross(l3(1:3,:),l3(4:6,:));
+end
+
+if size(l1,1)==6
+    l1=cross(l1(1:3,:),l1(4:6,:));
+    l2=cross(l2(1:3,:),l2(4:6,:));
+    l3=cross(l3(1:3,:),l3(4:6,:));
+end
+% format of lines  l1 l2 l3 (3x2  homogenous cases)
+% l1=[Ps Pe]=[Xps  Xpe]
+%            [Yps  Ype]
+%            [1    1  ]
+
+% If data is 2D, assume they are 2D inhomogeneous coords. Make them
+% homogeneous with scale 1.
+% if length(l1) == 2
+%     l1(3,:) = 1; l2(3,:) = 1; l3(3,:) = 1;
+% end
+% 
+% l11=cross(l1,l1);
+% l22=cross(l2(:,1),l2(:,2));
+% l33=cross(l3(:,1),l3(:,2));
+
+r=abs(det([l1 l2 l3]))<eps;
+% r=0;
+
+
+% test:
+
+% for i=1:3;for j=1:3;for k=1:3;
+end

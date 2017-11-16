@@ -1,0 +1,18 @@
+
+% compare detectd inliers & thier projected correspondences using obtained
+% Homography
+
+
+pt1_inliers=ptAllI1(:,inliers);
+pt2_inliers=ptAllI2(:,inliers);
+
+pt1H_inl=[H*[pt1_inliers(1:2,:);ones(1,length(inliers))]; H*[pt1_inliers(3:4,:);ones(1,length(inliers))]];
+pt1Hn_inl= hnormalise(pt1H_inl);
+Hinliers_2_I2=pt1Hn_inl([1 2 4 5],:);
+
+
+pt2invH_inl=[H\[pt2_inliers(1:2,:);ones(1,length(inliers))]; H\[pt2_inliers(3:4,:);ones(1,length(inliers))]];
+pt2invHn_inl= hnormalise(pt2invH_inl);
+invHinliers_2_I1=pt2invHn_inl([1 2 4 5],:);
+
+PlotCorrespLines1(I1,I2,[pt1_inliers invHinliers_2_I1],[pt2_inliers Hinliers_2_I2],1)
